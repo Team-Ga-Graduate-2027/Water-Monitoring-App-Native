@@ -11,7 +11,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         TextView textView = new TextView(this);
-        textView.setText("Hello world bitchass part 2");
+        textView.setText("Hello world bitchass part 333");
         textView.setTextSize(28);
 
         setContentView(textView);
