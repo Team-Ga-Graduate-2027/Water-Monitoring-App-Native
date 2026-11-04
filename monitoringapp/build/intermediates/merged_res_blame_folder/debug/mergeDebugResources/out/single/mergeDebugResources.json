@@ -1,0 +1,150 @@
+[
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_s4d4c4csw1cr40b111213.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/s4d4c4csw1cr40b111213.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_history.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_history.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_p_h_alert_details.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_p_h_alert_details.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_filter.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_filter.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_onboarding1.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_onboarding1.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr20b76ce98.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr20b76ce98.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_home.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_notification.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_notification.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr15b252b2b.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr15b252b2b.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_onboarding3.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_onboarding3.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_sensor_page.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_sensor_page.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/xml_backup_rules.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr15b76ce98.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr15b76ce98.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_onboarding2.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_onboarding2.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_main.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr15b2d3535.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr15b2d3535.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_s000000sw1b161618.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/s000000sw1b161618.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr20b2d3535.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr20b2d3535.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/drawable_cr20.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/drawable/cr20.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_settings.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_sensors.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_sensors.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.monitoringapp-debug-40:/layout_activity_onboarding4.xml.flat",
+        "source": "com.example.monitoringapp-main-42:/layout/activity_onboarding4.xml"
+    }
+]

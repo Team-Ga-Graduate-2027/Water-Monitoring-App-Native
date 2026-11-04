@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">monitoringapp</string>
+    <style name="Base.Theme.MonitoringApp" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.MonitoringApp" parent="Base.Theme.MonitoringApp"/>
+    <style name="cr100">
+		<item name="cornerSize">100dp</item>
+	</style>
+    <style name="cr20">
+		<item name="cornerSize">20dp</item>
+	</style>
+</resources>
