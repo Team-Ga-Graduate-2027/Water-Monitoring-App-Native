@@ -1,4 +1,5 @@
 # Water-Monitoring-App-Native
+Gawa Kayo Sarili niyong Branch then detailed pull request lang kayo para mai-add sa main.
 
 Thesis/Capstone Para sa pangarap natin na dapat abutin upang magtagumpay sa buhay at makaranas ng ginhawa at umunlad ang kabuhayan.
 
@@ -10,3 +11,5 @@ Rules:
 4. Always be open to criticism.
 5. Speak up about your ideas. 6-7. Six-Seven Six-Seven Six-Seven6
 6. If there is a problem, just shout WALANG KANIN BUSSENG
+
+Xiexie!
