@@ -1,5 +1,6 @@
 export 'screens/dashboard_shell.dart';
 export 'screens/filter_screen.dart';
+export 'screens/filter_history_screen.dart';
 export 'screens/history_screen.dart';
 export 'screens/home_screen.dart';
 export 'screens/notifications_screen.dart';

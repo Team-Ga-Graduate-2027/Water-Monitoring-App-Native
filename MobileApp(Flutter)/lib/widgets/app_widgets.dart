@@ -45,56 +45,64 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 54,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.header,
-        border: Border(bottom: BorderSide(color: Color(0xFF3B3B3B))),
+        border: Border(bottom: BorderSide(color: AppColors.headerBorder)),
       ),
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: [
-          const Text(
-            'Salin-Suri',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-          ),
-          if (showBack)
-            Positioned(
-              left: 12,
-              child: IconButton(
-                tooltip: 'Back',
-                onPressed: () => Navigator.maybePop(context),
-                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 19),
-                style: IconButton.styleFrom(
-                  backgroundColor: AppColors.surfaceRaised,
-                  foregroundColor: AppColors.accent,
-                ),
-              ),
-            ),
-          if (onNotifications != null)
-            Positioned(
-              right: 12,
-              child: IconButton(
-                tooltip: 'Notifications',
-                onPressed: onNotifications,
-                icon: const Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Icon(Icons.notifications_none_rounded),
-                    Positioned(
-                      top: 0,
-                      right: -1,
-                      child: CircleAvatar(
-                        radius: 3,
-                        backgroundColor: AppColors.danger,
-                      ),
+          SizedBox(
+            width: 56,
+            child: showBack
+                ? IconButton(
+                    tooltip: 'Back',
+                    onPressed: () => Navigator.maybePop(context),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 19,
                     ),
-                  ],
-                ),
-                style: IconButton.styleFrom(
-                  backgroundColor: AppColors.surfaceRaised,
-                  foregroundColor: AppColors.accent,
-                ),
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppColors.surfaceRaised,
+                      foregroundColor: AppColors.accent,
+                    ),
+                  )
+                : null,
+          ),
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Salin-Suri',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
               ),
             ),
+          ),
+          SizedBox(
+            width: 56,
+            child: onNotifications != null
+                ? IconButton(
+                    tooltip: 'Notifications',
+                    onPressed: onNotifications,
+                    icon: const Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Icon(Icons.notifications_none_rounded),
+                        Positioned(
+                          top: 0,
+                          right: -1,
+                          child: CircleAvatar(
+                            radius: 3,
+                            backgroundColor: AppColors.danger,
+                          ),
+                        ),
+                      ],
+                    ),
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppColors.surfaceRaised,
+                      foregroundColor: AppColors.accent,
+                    ),
+                  )
+                : null,
+          ),
         ],
       ),
     );
@@ -164,6 +172,7 @@ class AppBottomNavigationBar extends StatelessWidget {
     const destinations = [
       (icon: Icons.home_outlined, label: 'Home'),
       (icon: Icons.filter_alt_outlined, label: 'Filter'),
+      (icon: Icons.notifications_none_rounded, label: 'Notification'),
       (icon: Icons.settings_outlined, label: 'Settings'),
     ];
     return SafeArea(
@@ -189,7 +198,7 @@ class AppBottomNavigationBar extends StatelessWidget {
                   children: [
                     Icon(
                       item.icon,
-                      color: selected ? AppColors.accent : Colors.white,
+                      color: selected ? AppColors.accent : AppColors.foreground,
                       size: 28,
                     ),
                     if (selected) ...[
@@ -317,14 +326,14 @@ class SensorCard extends StatelessWidget {
                           ),
                           child: Icon(
                             sensor.icon,
-                            color: Colors.white,
+                            color: AppColors.foreground,
                             size: 20,
                           ),
                         ),
                         const Spacer(),
-                        const Icon(
+                        Icon(
                           Icons.chevron_right_rounded,
-                          color: Colors.white,
+                          color: AppColors.foreground,
                         ),
                       ],
                     ),
@@ -377,10 +386,7 @@ class SensorCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Icon(
-                      Icons.chevron_right_rounded,
-                      color: AppColors.muted,
-                    ),
+                    Icon(Icons.chevron_right_rounded, color: AppColors.muted),
                   ],
                 ),
         ),
@@ -412,7 +418,7 @@ class ReadingTile extends StatelessWidget {
               children: [
                 Text(
                   sensor.name,
-                  style: const TextStyle(color: AppColors.muted, fontSize: 10),
+                  style: TextStyle(color: AppColors.muted, fontSize: 10),
                 ),
                 const SizedBox(height: 3),
                 Text(
@@ -446,7 +452,7 @@ class StageSwitch extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: AppColors.background,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(13),
       ),
       child: Row(
@@ -488,14 +494,14 @@ class StageButton extends StatelessWidget {
           duration: const Duration(milliseconds: 180),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           decoration: BoxDecoration(
-            color: selected ? AppColors.surfaceRaised : Colors.transparent,
+            color: selected ? AppColors.accent : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: selected ? Colors.white : AppColors.muted,
+              color: selected ? const Color(0xFF102017) : AppColors.muted,
               fontSize: 11,
               fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
             ),
@@ -565,12 +571,15 @@ class InsightTile extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                      style: TextStyle(
+                        color: AppColors.foreground,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
               ),
-              const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+              Icon(Icons.keyboard_arrow_down, color: AppColors.foreground),
             ],
           ),
         ),
@@ -602,10 +611,7 @@ class MiniStat extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: const TextStyle(color: AppColors.muted, fontSize: 10),
-          ),
+          Text(label, style: TextStyle(color: AppColors.muted, fontSize: 10)),
           const SizedBox(height: 5),
           Text(
             value,
@@ -648,7 +654,7 @@ class InfoCard extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   description,
-                  style: const TextStyle(color: AppColors.muted, height: 1.4),
+                  style: TextStyle(color: AppColors.muted, height: 1.4),
                 ),
               ],
             ),
@@ -708,7 +714,7 @@ class StageRow extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   subtitle,
-                  style: const TextStyle(color: AppColors.muted, fontSize: 11),
+                  style: TextStyle(color: AppColors.muted, fontSize: 11),
                 ),
               ],
             ),
@@ -792,8 +798,8 @@ class NotificationTile extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       description,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: AppColors.foreground,
                         height: 1.4,
                         fontSize: 12,
                       ),
@@ -801,7 +807,10 @@ class NotificationTile extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       date,
-                      style: const TextStyle(color: Colors.white, fontSize: 11),
+                      style: TextStyle(
+                        color: AppColors.foreground,
+                        fontSize: 11,
+                      ),
                     ),
                   ],
                 ),
@@ -822,7 +831,7 @@ class GroupLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Text(
     label,
-    style: const TextStyle(
+    style: TextStyle(
       color: AppColors.muted,
       fontWeight: FontWeight.w800,
       fontSize: 10,
@@ -864,7 +873,7 @@ class SettingsRow extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: const TextStyle(color: AppColors.muted, fontSize: 10),
+                  style: TextStyle(color: AppColors.muted, fontSize: 10),
                 ),
               ],
             ),
@@ -900,7 +909,7 @@ class _TrendChartPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final grid = Paint()
-      ..color = Colors.white.withValues(alpha: .08)
+      ..color = AppColors.foreground.withValues(alpha: .08)
       ..strokeWidth = 1;
     for (var index = 0; index < 4; index++) {
       final y = size.height * index / 3;

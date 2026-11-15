@@ -4,6 +4,7 @@ import '../models/sensor_reading.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_widgets.dart';
 import '../widgets/navigation_helpers.dart';
+import 'filter_history_screen.dart';
 import 'sensor_detail_screen.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -18,52 +19,77 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DetailScaffold(
-      title: 'Notification',
-      trailing: TextButton(
-        onPressed: () => setState(() => _readAll = true),
-        child: Text(
-          _readAll ? 'All Read' : 'Read All (2)',
-          style: const TextStyle(color: AppColors.accent, fontSize: 12),
-        ),
+    return ValueListenableBuilder<bool>(
+      valueListenable: AppTheme.notificationsEnabled,
+      builder: (context, enabled, _) => DetailScaffold(
+        title: 'Notification',
+        trailing: enabled
+            ? TextButton(
+                onPressed: () => setState(() => _readAll = true),
+                child: Text(
+                  _readAll ? 'All Read' : 'Read All (2)',
+                  style: const TextStyle(color: AppColors.accent, fontSize: 12),
+                ),
+              )
+            : null,
+        children: enabled
+            ? [
+                NotificationTile(
+                  icon: Icons.error_outline_rounded,
+                  title: 'pH Level Alert',
+                  description: 'Pre-filtration pH reached 9.8, above the reference range.',
+                  date: '27/10/26, 9:10 am',
+                  color: AppColors.danger,
+                  unread: !_readAll,
+                  onTap: () => pushPage(context, const PHAlertDetailsScreen()),
+                ),
+                const Divider(height: 1, indent: 66),
+                NotificationTile(
+                  icon: Icons.error_outline_rounded,
+                  title: 'Turbidity Level Alert',
+                  description: 'Post-filtration turbidity reached 4.2 NTU, exceeding the 1.0 NTU target.',
+                  date: '26/10/26, 3:45 pm',
+                  color: AppColors.danger,
+                  unread: false,
+                  onTap: () => pushPage(
+                    context,
+                    SensorDetailScreen(sensor: sampleSensorReadings[2]),
+                  ),
+                ),
+                const Divider(height: 1, indent: 66),
+                NotificationTile(
+                  icon: Icons.error_outline_rounded,
+                  title: 'Flow Rate Notice',
+                  description: 'Intake flow dropped to 12 L/min, below the expected 20 L/min minimum.',
+                  date: '24/10/26, 8:05 am',
+                  color: AppColors.warning,
+                  unread: false,
+                  onTap: () => pushPage(
+                    context,
+                    SensorDetailScreen(sensor: sampleSensorReadings[4]),
+                  ),
+                ),
+                const Divider(height: 1, indent: 66),
+                NotificationTile(
+                  icon: Icons.build_outlined,
+                  title: 'Maintenance Alert',
+                  description: 'Review the filter media and record any replacement work.',
+                  date: '24/10/26, 8:05 am',
+                  color: AppColors.accent,
+                  unread: false,
+                  onTap: () =>
+                      pushPage(context, const MaintenanceHistoryScreen()),
+                ),
+              ]
+            : [
+                surfaceCard(
+                  child: Text(
+                    'Notifications are turned off. You can turn them back on in Settings.',
+                    style: TextStyle(color: AppColors.muted, height: 1.5),
+                  ),
+                ),
+              ],
       ),
-      children: [
-        NotificationTile(
-          icon: Icons.error_outline_rounded,
-          title: 'pH Alert',
-          description: 'pH Level Outside Reference Range Pre-filtration pH reached 9.8, which is above the reference range.',
-          date: '27 Sep 2026, 9:10 am',
-          color: AppColors.danger,
-          unread: !_readAll,
-          onTap: () => pushPage(context, const PHAlertDetailsScreen()),
-        ),
-        const Divider(height: 1, indent: 66),
-        NotificationTile(
-          icon: Icons.error_outline_rounded,
-          title: 'Turbidity Alert',
-          description: 'High Turbidity Detected Post-filtration turbidity spiked to 4.2 NTU, exceeding the 1.0 NTU threshold.',
-          date: '26 Sep 2026, 3:45 pm',
-          color: AppColors.danger,
-          unread: !_readAll,
-          onTap: () => pushPage(
-            context,
-            SensorDetailScreen(sensor: sampleSensorReadings[2]),
-          ),
-        ),
-        const Divider(height: 1, indent: 66),
-        NotificationTile(
-          icon: Icons.error_outline_rounded,
-          title: 'Flow rate notice',
-          description: 'Low Flow Rate Warning Intake flow dropped to 12 L/min, below the expected 20 L/min minimum rate.',
-          date: '24 Sep 2026, 8:05 am',
-          color: AppColors.danger,
-          unread: false,
-          onTap: () => pushPage(
-            context,
-            SensorDetailScreen(sensor: sampleSensorReadings[4]),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -95,7 +121,7 @@ class PHAlertDetailsScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 14),
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
@@ -110,12 +136,12 @@ class PHAlertDetailsScreen extends StatelessWidget {
                   Text(
                     '1.3 above upper limit',
                     textAlign: TextAlign.right,
-                    style: TextStyle(color: Colors.white, height: 1.4),
+                    style: TextStyle(color: AppColors.foreground, height: 1.4),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 'Reference range: 6.5 - 8.5',
                 style: TextStyle(color: AppColors.muted),
               ),
@@ -175,7 +201,7 @@ class PHAlertDetailsScreen extends StatelessWidget {
         const SizedBox(height: 10),
         surfaceCard(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Verify the measurement', style: TextStyle(fontSize: 13)),
@@ -203,7 +229,7 @@ class PHAlertDetailsScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 13),
-        const Text(
+        Text(
           'This alert concerns pre-filtration water. pH alone does not confirm drinking-water safety.',
           textAlign: TextAlign.center,
           style: TextStyle(color: AppColors.muted, fontSize: 12, height: 1.45),

@@ -42,10 +42,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
+            Icon(
               Icons.water_drop_outlined,
               size: 96,
-              color: Colors.white,
+              color: AppColors.foreground,
             ),
             const SizedBox(height: 14),
             const Text(
@@ -55,10 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 30),
             TextButton(
               onPressed: _openOnboarding,
-              child: const Text(
-                'Continue',
-                style: TextStyle(color: AppColors.muted),
-              ),
+              child: Text('Continue', style: TextStyle(color: AppColors.muted)),
             ),
           ],
         ),
@@ -240,15 +237,11 @@ class _MeasurementPreview extends StatelessWidget {
 }
 
 class _PreviewValue extends StatelessWidget {
-  const _PreviewValue({
-    required this.title,
-    required this.value,
-    this.color = Colors.white,
-  });
+  const _PreviewValue({required this.title, required this.value, this.color});
 
   final String title;
   final String value;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) => Expanded(
@@ -265,7 +258,7 @@ class _PreviewValue extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w700,
-            color: color,
+            color: color ?? AppColors.foreground,
           ),
         ),
       ],
@@ -292,7 +285,7 @@ class _PreviewChartPainter extends CustomPainter {
     const valuesA = [.78, .65, .42, .51, .28, .36, .18];
     const valuesB = [.88, .52, .69, .81, .37, .44, .26];
     final grid = Paint()
-      ..color = Colors.white.withValues(alpha: .2)
+      ..color = AppColors.foreground.withValues(alpha: .2)
       ..strokeWidth = 1;
     for (var index = 0; index < 4; index++) {
       final y = size.height * (index + 1) / 5;

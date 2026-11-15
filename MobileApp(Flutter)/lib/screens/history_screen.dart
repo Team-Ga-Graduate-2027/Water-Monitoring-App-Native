@@ -59,7 +59,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             _postFiltration
                                 ? 'Post-Filtration'
                                 : 'Pre-filtration',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: AppColors.muted,
                               fontSize: 10,
                             ),
@@ -79,7 +79,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       height: 42,
                       child: VerticalDivider(color: Color(0xFF596060)),
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         children: [
                           Text(
@@ -101,7 +101,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Range',
                           style: TextStyle(
                             color: AppColors.muted,
@@ -121,7 +121,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             Text(
                               'Within Range',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.foreground,
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -178,7 +178,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -321,7 +321,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               const SizedBox(height: 12),
               Text(
                 'Current sample: $value pH · $_range',
-                style: const TextStyle(color: AppColors.muted, fontSize: 11),
+                style: TextStyle(color: AppColors.muted, fontSize: 11),
               ),
             ],
           ),

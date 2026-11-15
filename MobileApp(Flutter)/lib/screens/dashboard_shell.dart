@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/app_widgets.dart';
 import 'home_screen.dart';
 import 'filter_screen.dart';
+import 'notifications_screen.dart';
 import 'sensors_screen.dart';
 import 'settings_screen.dart';
 
@@ -27,6 +28,7 @@ class _DashboardShellState extends State<DashboardShell> {
         ).push(MaterialPageRoute<void>(builder: (_) => const SensorsScreen())),
       ),
       const FilterScreen(),
+      const NotificationsScreen(),
       const SettingsScreen(),
     ];
     return Scaffold(

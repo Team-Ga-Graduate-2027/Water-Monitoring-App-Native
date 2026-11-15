@@ -77,29 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     const Expanded(child: SectionTitle('Live Dashboard')),
-                    TextButton.icon(
-                      onPressed: () =>
-                          setState(() => _postFiltration = !_postFiltration),
-                      style: TextButton.styleFrom(
-                        foregroundColor: AppColors.accent,
-                        padding: EdgeInsets.zero,
-                      ),
-                      icon: const SizedBox.shrink(),
-                      label: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            _postFiltration
-                                ? 'Post-filtration'
-                                : 'Pre-filtration',
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          const SizedBox(width: 4),
-                          const Icon(Icons.keyboard_arrow_down, size: 16),
-                        ],
-                      ),
-                    ),
                   ],
+                ),
+                const SizedBox(height: 8),
+                StageSwitch(
+                  postFiltration: _postFiltration,
+                  onChanged: (value) => setState(() => _postFiltration = value),
                 ),
                 const SizedBox(height: 4),
                 surfaceCard(
@@ -108,14 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Last Updated:',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppColors.foreground,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -212,41 +195,61 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 24),
                 const SectionTitle('Monitoring Insights'),
                 const SizedBox(height: 4),
-                InsightTile(
+                _ExpandableInsightTile(
                   icon: Icons.science_outlined,
                   title: 'pH Level Monitoring',
                   subtitle: 'Monitor pH Level changes',
-                  onTap: () => pushPage(
+                  sensor: sampleSensorReadings[1],
+                  onOpen: () => pushPage(
                     context,
                     SensorDetailScreen(sensor: sampleSensorReadings[1]),
                   ),
                 ),
-                const SizedBox(height: 9),
-                InsightTile(
+                _ExpandableInsightTile(
                   icon: Icons.thermostat_outlined,
                   title: 'Water Temperature Monitoring',
                   subtitle: 'Monitor temperature changes',
-                  onTap: () => pushPage(
+                  sensor: sampleSensorReadings[0],
+                  onOpen: () => pushPage(
                     context,
                     SensorDetailScreen(sensor: sampleSensorReadings[0]),
                   ),
                 ),
-                const SizedBox(height: 9),
-                InsightTile(
+                _ExpandableInsightTile(
                   icon: Icons.water_outlined,
                   title: 'Turbidity Monitoring',
                   subtitle: 'Monitor turbidity changes',
-                  onTap: () => pushPage(
+                  sensor: sampleSensorReadings[2],
+                  onOpen: () => pushPage(
                     context,
                     SensorDetailScreen(sensor: sampleSensorReadings[2]),
                   ),
                 ),
-                const SizedBox(height: 9),
-                InsightTile(
+                _ExpandableInsightTile(
+                  icon: Icons.bubble_chart_outlined,
+                  title: 'TDS Monitoring',
+                  subtitle: 'Monitor dissolved solids changes',
+                  sensor: sampleSensorReadings[3],
+                  onOpen: () => pushPage(
+                    context,
+                    SensorDetailScreen(sensor: sampleSensorReadings[3]),
+                  ),
+                ),
+                _ExpandableInsightTile(
+                  icon: Icons.waves_rounded,
+                  title: 'Water Flow Monitoring',
+                  subtitle: 'Monitor flow rate changes',
+                  sensor: sampleSensorReadings[4],
+                  onOpen: () => pushPage(
+                    context,
+                    SensorDetailScreen(sensor: sampleSensorReadings[4]),
+                  ),
+                ),
+                _ExpandableInsightTile(
                   icon: Icons.show_chart_rounded,
                   title: 'Water quality history',
                   subtitle: 'Review historical readings and trends',
-                  onTap: () => pushPage(context, const HistoryScreen()),
+                  onOpen: () => pushPage(context, const HistoryScreen()),
                 ),
               ],
             ),
@@ -257,6 +260,107 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   String _homeMetricName(String name) => name == 'pH level' ? 'pH level' : name;
+}
+
+class _ExpandableInsightTile extends StatelessWidget {
+  const _ExpandableInsightTile({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onOpen,
+    this.sensor,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final SensorReading? sensor;
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 9),
+      child: Material(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(12),
+        clipBehavior: Clip.antiAlias,
+        child: Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            tilePadding: const EdgeInsets.symmetric(horizontal: 12),
+            childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
+            leading: Icon(icon, color: AppColors.accent, size: 21),
+            title: Text(title, style: const TextStyle(fontSize: 15)),
+            subtitle: Text(
+              subtitle,
+              style: TextStyle(color: AppColors.muted, fontSize: 11),
+            ),
+            iconColor: AppColors.accent,
+            collapsedIconColor: AppColors.foreground,
+            children: [
+              if (sensor case final reading?) ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: _InsightReading(
+                        label: 'Pre-filtration',
+                        value: reading.value,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _InsightReading(
+                        label: 'Post-filtration',
+                        value: reading.postValue,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+              ] else ...[
+                Text(
+                  'Review historical readings and compare filtration stages.',
+                  style: TextStyle(color: AppColors.muted, fontSize: 12),
+                ),
+                const SizedBox(height: 8),
+              ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton.icon(
+                  onPressed: onOpen,
+                  iconAlignment: IconAlignment.end,
+                  icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                  label: const Text('View details'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.accent,
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _InsightReading extends StatelessWidget {
+  const _InsightReading({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(label, style: TextStyle(color: AppColors.muted, fontSize: 10)),
+      const SizedBox(height: 4),
+      Text(value, style: const TextStyle(fontWeight: FontWeight.w700)),
+    ],
+  );
 }
 
 class _StatusCard extends StatelessWidget {
